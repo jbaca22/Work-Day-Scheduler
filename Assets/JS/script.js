@@ -1,12 +1,15 @@
 //Array that holds the hour id's for timestamps on left of page
 var hourlyCheck = $(".hour");
 
+var store = {};
+
 //function that brings the current date and appends it to the HTML ID currentDay
 var todayDate =function() {
     var presentDay = moment().format("dddd MMM Do YYYY"); 
     $("#currentDay").append(presentDay);
 }
 todayDate();
+
 
 //every time a user hits the save button, their input in the textarea gets saved to local storage
 $(".saveBtn").on("click", function () {
@@ -18,6 +21,23 @@ $(".saveBtn").on("click", function () {
 
     console.log(localStorage);
 })
+
+var loadTasks = function() {
+    JSON.parse(localStorage.getItem(timeInput, textInput));
+
+    if (!store) {
+        timeInput = [];
+        textInput = [];
+    };
+
+    $.each(store, function(list, arr) {
+        // then loop over sub-array
+        arr.forEach(function() {
+          createTask(timeInput, textInput);
+        });
+    });
+};
+
 
 // function that loops through the hourlyCheck array to find the hour id's, and then bases conditional statements off of the present value of time and the id's found in the array.
 var Check = function() {
