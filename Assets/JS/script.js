@@ -10,7 +10,6 @@ var todayDate =function() {
 }
 todayDate();
 
-
 //every time a user hits the save button, their input in the textarea gets saved to local storage
 $(".saveBtn").on("click", function () {
     //gets the nearby values to store later.
@@ -22,22 +21,31 @@ $(".saveBtn").on("click", function () {
     console.log(localStorage);
 })
 
-var loadTasks = function() {
-    JSON.parse(localStorage.getItem(timeInput, textInput));
-
-    if (!store) {
-        timeInput = [];
-        textInput = [];
-    };
-
-    $.each(store, function(list, arr) {
-        // then loop over sub-array
-        arr.forEach(function() {
-          createTask(timeInput, textInput);
-        });
-    });
-};
-
+//function that retrieves stored data from previous submit buttons
+var loadTasks =function () {
+    //retrieves item from row-1 in storage
+    var store = localStorage.getItem("row-1")
+    //appends it to the text-1 id textarea in HTML
+    $("#text-1").append(store);
+    var store = localStorage.getItem("row-2")
+    $("#text-2").append(store);
+    var store = localStorage.getItem("row-3")
+    $("#text-3").append(store);
+    var store = localStorage.getItem("row-4")
+    $("#text-4").append(store);
+    var store = localStorage.getItem("row-5")
+    $("#text-5").append(store);
+    var store = localStorage.getItem("row-6")
+    $("#text-6").append(store);
+    var store = localStorage.getItem("row-7")
+    $("#text-7").append(store);
+    var store = localStorage.getItem("row-8")
+    $("#text-8").append(store);
+    var store = localStorage.getItem("row-9")
+    $("#text-9").append(store);
+}
+//calls function
+loadTasks();
 
 // function that loops through the hourlyCheck array to find the hour id's, and then bases conditional statements off of the present value of time and the id's found in the array.
 var Check = function() {
